@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm app.js",
     "test": "nodemon app.js",
-    "build-css": "tailwindcss build -i src/styles.css -o public/styles.css"
+    "build-css": "tailwindcss build -i styles/tailwindcss.css -o public/styles.css"
   },
   "keywords": [],
   "author": "AK",
@@ -15,7 +15,7 @@
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
-    "mongoose": "^6.1.1",
-    "tailwindcss": "^3.0.1"
+    "mongoose": "^6.1.2",
+    "tailwindcss": "^3.0.2"
   }
 }
