@@ -1,10 +1,10 @@
-const express = require('express');
-const mongoose = require('mongoose');
-
 //.env configuration
 if (process.env.NODE_ENV !== 'production'){
    require("dotenv").config();
 }
+
+const express = require('express');
+const mongoose = require('mongoose');
 
 //Connect DB
 const DBURL = process.env.DBURI;
