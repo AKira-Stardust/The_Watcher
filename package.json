@@ -2,6 +2,9 @@
   "name": "the_watcher",
   "version": "1.0.0",
   "description": "One place to track all your shows",
+  "engines": {
+    "node": "14.16.0"
+  },
   "main": "app.js",
   "scripts": {
     "start": "npm app.js",
