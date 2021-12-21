@@ -1,4 +1,4 @@
-// toWatch_index, toWatch_add_get, toWatch_post, toWatch_get_one, toWatch_delete
+const Drama = require('../models/drama');
 
 //Test Data
 const dramaList = [
@@ -20,13 +20,19 @@ const dramaList = [
 ];
 
 //toWatch_index
-const toWatch_index = (req, res) => {    
-    res.render("toWatch/index", {
-        title: "Dramas To Watch",
-        dramaList
-    });
+const toWatch_index = (req, res) => {
+    Drama.find({status:"toWatch"})
+        .then( (result) => {
+            res.render("toWatch/index", {
+                title: "All To Watch Dramas",
+                dramaList: result
+            });
+            // console.log(result);
+        })
+        .catch ( (err) => {
+            console.log("Error in fetching data! " + err);
+        })    
 }; 
-
 
 //EXPORT
 module.exports = {

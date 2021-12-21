@@ -14,9 +14,11 @@ mongoose.connect(DBURL)
     .catch( err => { console.log("Oops! Issue connecting to DB.. " + err);});
 
 //Require Routers
-const watchedRouter = require('./routers/watchedRouters');
-const watchingRouter = require('./routers/watchingRouters');
-const toWatchRouter = require('./routers/toWatchRouters');
+const watchedRouter = require('./routers/watchedRouter');
+const watchingRouter = require('./routers/watchingRouter');
+const toWatchRouter = require('./routers/toWatchRouter');
+const detailsRouter = require('./routers/detailsRouter');
+const allRouter = require('./routers/allRouter');
 
 //App
 const app = express();
@@ -30,10 +32,12 @@ app.use(express.urlencoded({extended: true}));
 
 //Setup main index
 app.get('/', (req, res)=>{
-   res.redirect("/watchedList");
+   res.redirect("/all");
 });
 
 //Setup Routers
 app.use('/watchedList', watchedRouter);
 app.use('/watchingList', watchingRouter);
 app.use('/toWatchList', toWatchRouter);
+app.use('/details', detailsRouter);
+app.use('/all', allRouter);

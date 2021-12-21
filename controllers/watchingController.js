@@ -1,4 +1,4 @@
-// watching_index, watching_add_get, watching_post, watching_get_one, watching_delete
+const Drama = require('../models/drama');
 
 //Test Data
 const dramaList = [
@@ -21,12 +21,18 @@ const dramaList = [
 
 //watching_index
 const watching_index = (req, res) => {    
-    res.render("watching/index", {
-        title: "Currently Watching Dramas",
-        dramaList
-    });
+    Drama.find({status:"watching"})
+        .then( (result) => {
+            res.render("watching/index", {
+                title: "All To Watch Dramas",
+                dramaList: result
+            });
+            // console.log(result);
+        })
+        .catch ( (err) => {
+            console.log("Error in fetching data! " + err);
+        })    
 }; 
-
 
 //EXPORT
 module.exports = {

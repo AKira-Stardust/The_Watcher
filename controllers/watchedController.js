@@ -1,5 +1,5 @@
 const Drama = require('../models/drama');
-// watched_index, watched_add_get, watched_add_post, watched_get_one, watched_delete
+// watched_index, watched_add_get, watched_add_post, watched_delete
 
 //Test Data
 const dramaList = [
@@ -28,7 +28,7 @@ const dramaList = [
 
 //watched_index
 const watched_index = (req, res) => {
-    Drama.find()
+    Drama.find({status:"watched"})
         .then( (result) => {
             res.render("watched/index", {
                 title: "All Watched Dramas",
@@ -41,28 +41,7 @@ const watched_index = (req, res) => {
         })    
 }; 
 
-//watched_add_get
-const watched_add_get = (req, res) => {
-    res.render("watched/addNewDrama", {
-        title: "Add New Watched Drama"
-    });
-};
-
-//watched_add_post
-const watched_add_post = (req, res) => {
-    const drama = new Drama(req.body);
-    drama.save()
-        .then(result =>{
-            res.redirect("/"); })
-        .catch( err => {
-            console.log("Oops! Error saving Drama.. " + err);
-        });
-};
-
-
 //EXPORT
 module.exports = {
-    watched_index,
-    watched_add_get,
-    watched_add_post
+    watched_index
 };
