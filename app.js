@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 const DBURL = process.env.DBURI;
 mongoose.connect(DBURL)
 .then(result => { console.log("Connected to DB!"); 
-                  app.listen(process.env.port || 3000); })
+                  app.listen(process.env.PORT || 3000); })
     .catch( err => { console.log("Oops! Issue connecting to DB.. " + err);});
 
 //Require Routers
