@@ -36,10 +36,38 @@ const all_add_post = (req, res) => {
         });
 };
 
+//update existing drama - get
+const all_update_get = (req, res) => {
+    const id = req.params.id;
+    Drama.findById(id)
+    .then( (result) => {
+        res.render('all/updateDrama',{
+            drama: result,
+            title: "Update Drama"
+        });
+    })
+    .catch( (err) =>{
+        console.log("Oops, error locating that Drama! " + err);
+    });
+};
 
+//update existing drama - put
+const all_update_post = (req, res) => {
+    const id = req.params.id;
+
+    Drama.findByIdAndUpdate(id, req.body)
+    .then( (result) => {
+        res.redirect(`/details/${id}`);
+    })
+    .catch( (err) =>{
+        console.log("Oops, error updating that Drama! " + err);
+    });
+};
 
 module.exports = { 
     all_details,
     all_add_get,
-    all_add_post 
+    all_add_post,
+    all_update_get,
+    all_update_post
 };

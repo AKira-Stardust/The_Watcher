@@ -8,7 +8,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "nodemon app.js",
+    "test": "nodemon app.js -e ejs,js",
     "build-css": "tailwindcss build -i styles/tailwindcss.css -o public/styles.css"
   },
   "keywords": [],

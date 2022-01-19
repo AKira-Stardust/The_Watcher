@@ -15,4 +15,19 @@ const drama_details = (req, res) => {
     });
 };
 
-module.exports = { drama_details };
+//drama_delete
+const drama_delete = (req, res) => { 
+    const id = req.params.id;
+    Drama.findByIdAndDelete(id)
+        .then( () => {
+            res.json({redirect:'/all'});
+        })
+        .catch( (err) => {
+            console.log("Error running Delete DB command.. " + err);
+        });
+};
+
+module.exports = { 
+    drama_details,
+    drama_delete
+};

@@ -10,8 +10,8 @@
             <div class="col-span-3 rounded-lg">
                 <!-- START - Delete and Edit buttons -->
                 <div class="p-8 flex justify-center items-center absolute">
-                    <div >
-                        <a href="" class="flex items-center">
+                    <div>
+                        <a href="#" data-doc="<%= drama._id %>" class="delete_drama flex items-center">
                             <svg class="inline" style="width:24px;height:24px" viewBox="0 0 24 24">
                                 <path fill="currentColor" d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z" />
                             </svg>
@@ -19,8 +19,8 @@
                         </a>                
                     </div>
                     <div class="pl-8 font-semibold text-red-800 text-sm">|</div>
-                    <div class="flex pl-8 items-center">
-                        <a href="" class="flex items-center">
+                    <div  class="flex pl-8 items-center">
+                        <a href="/all/updateDrama/<%= drama._id %>" class="update_Drama flex items-center">
                             <svg class="inline" style="width:24px;height:24px" viewBox="0 0 24 24">
                                 <path fill="currentColor" d="M21,10.12H14.22L16.96,7.3C14.23,4.6 9.81,4.5 7.08,7.2C4.35,9.91 4.35,14.28 7.08,17C9.81,19.7 14.23,19.7 16.96,17C18.32,15.65 19,14.08 19,12.1H21C21,14.08 20.12,16.65 18.36,18.39C14.85,21.87 9.15,21.87 5.64,18.39C2.14,14.92 2.11,9.28 5.62,5.81C9.13,2.34 14.76,2.34 18.27,5.81L21,3V10.12M12.5,8V12.25L16,14.33L15.28,15.54L11,13V8H12.5Z" />
                             </svg>
@@ -35,6 +35,10 @@
                 <div class="mt-7">
                     <span class="text-sm text-gray-400">Title: </span>
                     <span class="text-lg font-bold text-red-700"><%= drama.title %></span>
+                </div>
+                <div>
+                    <span class="text-sm text-gray-400">Status: </span>
+                    <span class="text-light-off"><%= drama.status %></span>
                 </div>
                 <div>
                     <span class="text-sm text-gray-400">Year of Release: </span>
@@ -55,30 +59,32 @@
                 </div> 
             </div>
         </div>
-        
-        <!-- <div class="p-8 flex justify-center items-center">
-            <div >
-                <a href="" class="flex items-center">
-                    <svg class="inline" style="width:24px;height:24px" viewBox="0 0 24 24">
-                        <path fill="currentColor" d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z" />
-                    </svg>
-                    <span class="pl-2 font-semibold text-red-800 text-sm">DELETE</span>
-                </a>                
-            </div>
-            <div class="pl-8 font-semibold text-red-800 text-sm">|</div>
-            <div class="flex pl-8 items-center">
-                <a href="" class="flex items-center">
-                    <svg class="inline" style="width:24px;height:24px" viewBox="0 0 24 24">
-                        <path fill="currentColor" d="M21,10.12H14.22L16.96,7.3C14.23,4.6 9.81,4.5 7.08,7.2C4.35,9.91 4.35,14.28 7.08,17C9.81,19.7 14.23,19.7 16.96,17C18.32,15.65 19,14.08 19,12.1H21C21,14.08 20.12,16.65 18.36,18.39C14.85,21.87 9.15,21.87 5.64,18.39C2.14,14.92 2.11,9.28 5.62,5.81C9.13,2.34 14.76,2.34 18.27,5.81L21,3V10.12M12.5,8V12.25L16,14.33L15.28,15.54L11,13V8H12.5Z" />
-                    </svg>
-                    <span class="pl-2 font-semibold text-red-800 text-sm">UPDATE</span>
-                </a>
-            </div> 
-        </div> -->
-
     </div>
     <!-- Footer -->
     <%- include("./partials/footer.ejs") %>
+
+    <script>
+        const trash = document.querySelector('a.delete_drama');
+        trash.addEventListener('click', (e) => {
+            const endPoint = `/details/${trash.dataset.doc}`;
+            fetch(endPoint, {
+                method: "DELETE"
+            })
+            .then( (res) => {
+                res.json()
+                .then( (data) => {
+                    console.log("doc:",doc);
+                    window.location.href = (data.redirect);
+                })
+                .else( (err) =>{
+                    console.log("Trouble with json to data conversion.. " + err);
+                })
+            })
+            .catch( (err) =>{
+                console.log("Error in deleting record.. " + err);
+            });
+        });
+    </script>
 
 </body>
 </html>
