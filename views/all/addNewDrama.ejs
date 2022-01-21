@@ -7,7 +7,7 @@
 
     <div class="p-14">       
         <div class="create-drama">
-            <form action="/all" method="POST">
+            <form action="/all" method="POST" enctype="multipart/form-data">
                 <label class="text-lg pb-2">Add a New Drama..</label>
                 <label for="title">Drama Title</label>
                 <input type="text" name="title" id="title" required>
@@ -22,8 +22,10 @@
                     <option value="Watched">Watched</option>
                     <option value="Watching">Watching</option>
                     <option value="To Watch">To Watch</option>
-                  </select>
-                <button>Submit</button>
+                </select>
+                <label for="uploaded_image">Upload Drama Cover</label>
+                <input type="file" name="uploaded_image">     
+                <button>Submit</button>                
             </form>
         </div>
     </div>

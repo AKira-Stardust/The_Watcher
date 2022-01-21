@@ -22,6 +22,9 @@ const dramaSchema = new Schema({
         type: String,
         required: true,
     },
+    image: {
+        type: Buffer
+    }
 }, {timestamps: true});
 
 const Drama = mongoose.model("dramas", dramaSchema);

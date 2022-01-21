@@ -1,4 +1,5 @@
 const Drama = require('../models/drama');
+const sharp = require("sharp");
 
 //drama_details
 //watched_index
@@ -26,8 +27,19 @@ const all_add_get = (req, res) => {
 
 
 //watched_add_post
-const all_add_post = (req, res) => {
-    const drama = new Drama(req.body);
+const all_add_post = async (req, res) => {
+
+    let buffer = null;
+    if (req.file){
+        buffer = await sharp(req.file.buffer).resize({width: 1000, height:700}).png().toBuffer();
+    }
+    
+ 
+    const drama = new Drama({
+        ...req.body,
+        image: buffer
+    });
+
     drama.save()
         .then(result =>{
             res.redirect("/"); })
