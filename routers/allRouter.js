@@ -25,4 +25,7 @@ router.post('/', upload.single("uploaded_image"), allController.all_add_post);
 //GET SINGLE DRAMA DETAILS
 router.get('/', allController.all_details);
 
+//GET IMAGE
+router.get('/image/:id', allController.all_image);
+
 module.exports = router;

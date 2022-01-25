@@ -21,7 +21,7 @@ const dramaList = [
 
 //watching_index
 const watching_index = (req, res) => {    
-    Drama.find({status:"watching"})
+    Drama.find({status:"Watching"})
         .then( (result) => {
             res.render("watching/index", {
                 title: "All To Watch Dramas",

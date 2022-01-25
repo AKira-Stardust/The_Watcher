@@ -6,11 +6,12 @@ const sharp = require("sharp");
 const all_details = (req, res) => {
     Drama.find()
         .then( (result) => {
+         
             res.render("all/all", {
                 title: "All Dramas",
                 dramaList: result
             });
-            // console.log(result);
+            // res.send(result);
         })
         .catch ( (err) => {
             console.log("Error in fetching data! " + err);
@@ -76,10 +77,25 @@ const all_update_post = (req, res) => {
     });
 };
 
+//send requested image
+const all_image = async (req, res) => {
+    const id = req.params.id;    
+    const drama = await Drama.findById(id);
+
+    if(!drama) {
+        console.log("Oops, error finding that Drama! " + err);
+    }
+    else{
+        res.set("Content-Type", "image/png");
+        res.send(drama.image);
+    }    
+};
+
 module.exports = { 
     all_details,
     all_add_get,
     all_add_post,
     all_update_get,
-    all_update_post
+    all_update_post,
+    all_image
 };
