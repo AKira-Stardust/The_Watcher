@@ -28,5 +28,13 @@
     <!-- Footer -->
     <%- include("../partials/footer.ejs") %>
 
+    <script>
+        const searchSubmit = document.querySelector(".searchSubmit");
+        searchSubmit.addEventListener("submit", (e) => {
+            e.preventDefault();
+        });
+    </script>
+
 </body>
+
 </html>

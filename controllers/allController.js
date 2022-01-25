@@ -91,11 +91,26 @@ const all_image = async (req, res) => {
     }    
 };
 
+//find particular drama
+const all_find_drama = (req, res) => {
+    Drama.find({title: { $regex: '.*' + req.query.title + '.*', $options: 'i' } })
+        .then( (result) => {         
+            res.render("all/all", {
+                title: "Search Results",
+                dramaList: result
+            });
+        })
+        .catch ( (err) => {
+            res.send("No Matching Dramas Found!");
+        })
+};
+
 module.exports = { 
     all_details,
     all_add_get,
     all_add_post,
     all_update_get,
     all_update_post,
-    all_image
+    all_image,
+    all_find_drama
 };

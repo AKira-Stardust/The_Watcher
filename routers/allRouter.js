@@ -28,4 +28,6 @@ router.get('/', allController.all_details);
 //GET IMAGE
 router.get('/image/:id', allController.all_image);
 
+//FIND DRAMA
+router.get('/findDrama', allController.all_find_drama);
 module.exports = router;

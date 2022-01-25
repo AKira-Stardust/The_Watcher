@@ -1,9 +1,9 @@
 <div class="text-center">
-    <form class="p-2">
-        <input type="text" class="text-dark-navy px-4 py-2 w-96 rounded-lg" 
-         placeholder="Search all Watched KDramas">
+    <form class="p-2"  action="/all/findDrama" method="GET">
+        <input type="text" name="title" class="text-dark-navy px-4 py-2 w-96 rounded-lg" 
+         placeholder="Search all KDramas">
         <button 
-        class="bg-dark-navy text-light-off
+        class="searchSubmit bg-dark-navy text-light-off
         hover:bg-white hover:text-dark-navy rounded-md p-2"
         type="submit">
             GO
